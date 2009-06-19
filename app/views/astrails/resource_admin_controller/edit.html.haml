@@ -1,0 +1,7 @@
+%h1= object.new_record? ? "New" : "Edit"
+
+!= render :partial => "astrails/resource_admin_controller/form"
+
+!= link_to 'Back', collection_url
+
+

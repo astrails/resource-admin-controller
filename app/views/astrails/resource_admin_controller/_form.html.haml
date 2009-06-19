@@ -1,0 +1,9 @@
+!= error_messages_for object_name
+
+- form_for(@object) do |f|
+  - f.object.class.columns.each do |c|
+    - next if c.name == "id"
+    - case c.type
+    - when :integer, :string
+      != f.text_field c.name
+  != f.submit

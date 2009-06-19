@@ -1,0 +1,33 @@
+%h1= page_title "Index"
+
+!= error_messages_for object_name
+
+
+!= render :partial => "astrails/resource_admin_controller/form"
+
+
+.center-box-1
+  .center-box-2
+    != will_paginate collection
+
+%table
+
+  %tr
+    - object.class.columns.each do |c|
+      - case c.type
+      - when :integer, :string
+        %th= c.name
+
+  - collection.each do |item|
+    %tr
+      - item.class.columns.each do |c|
+        - case c.type
+        - when :integer, :string
+          %td= item.send(c.name)
+
+      %td!= link_to 'edit', edit_object_url(item)
+      %td!= link_to 'destroy', object_url(item), :confirm => 'Are you sure?', :method => :delete
+
+.center-box-1
+  .center-box-2
+    != will_paginate collection
